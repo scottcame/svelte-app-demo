@@ -25,26 +25,26 @@ export default {
 	plugins: [
 
 		alias({
-      "@fortawesome/fontawesome-free-solid": "node_modules/@fortawesome/fontawesome-free-solid/shakable.es.js"
-    }),
+			"@fortawesome/fontawesome-free-solid": "node_modules/@fortawesome/fontawesome-free-solid/shakable.es.js"
+		}),
 
 		postcss({
-    	extensions: [ '.css' ],
+			extensions: [ '.css' ],
 			plugins: [
 				purgecss({
 					css: ['./**/bootstrap.*'],
-		    	content: ['./src/**/*.svelte']
+					content: ['./src/**/*.svelte']
 				}),
 				cssnano({
-            preset: ['default', {
-                discardComments: {
-                    removeAll: true,
-                },
-            }]
-        })
+					preset: ['default', {
+						discardComments: {
+							removeAll: true,
+						},
+					}]
+				})
 			],
 			sourceMap: !production
-   	}),
+		}),
 
 		svelte({
 			// enable run-time checks when not in production
@@ -62,21 +62,21 @@ export default {
 		commonjs(),
 
 		babel({
-      exclude: ['node_modules/**', 'src/**'],
+			exclude: ['node_modules/**', 'src/**'],
 			extensions: ['.js', '.ts'],
-      presets: [
-        [
-          '@babel/env',
-          {
-            modules: false,
-            targets: '> 1%, IE 11',
-            useBuiltIns: 'usage',
+			presets: [
+				[
+					'@babel/env',
+					{
+						modules: false,
+						targets: '> 1%, IE 11',
+						useBuiltIns: 'usage',
 						corejs: 3,
 						debug: true,
-          }
-        ]
-      ]
-    }),
+					}
+				]
+			]
+		}),
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
