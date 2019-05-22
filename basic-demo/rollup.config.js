@@ -32,8 +32,9 @@ export default {
 			extensions: [ '.css' ],
 			plugins: [
 				purgecss({
-					css: ['./**/bootstrap.*'],
-					content: ['./src/**/*.svelte']
+					css: ['./node_modules/bootstrap/dist/css/bootstrap.*', './node_modules/@fortawesome/fontawesome/styles.css'],
+					content: ['./src/*.svelte'],
+					rejected: true
 				}),
 				cssnano({
 					preset: ['default', {
@@ -49,8 +50,7 @@ export default {
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file — better for performance
+			// extract component CSS out into a separate file — better for performance
 			css: css => {
 				// second arg controls whether we generate a sourcemap
 				css.write('public/bundle.css', !production);
@@ -58,33 +58,29 @@ export default {
 		}),
 
 		resolve(),
-
 		commonjs(),
 
 		babel({
-			exclude: ['node_modules/**', 'src/**'],
-			extensions: ['.js', '.ts'],
+			extensions: ['.js', '.svelte', '.ts', '.mjs'],
 			presets: [
 				[
-					'@babel/env',
+					"@babel/env",
 					{
-						modules: false,
-						targets: '> 1%, IE 11',
-						useBuiltIns: 'usage',
-						corejs: 3,
-						debug: true,
-					}
-				]
+						targets: {
+							ie: '11',
+						},
+						useBuiltIns: false // cannot use babel polyfill due to IE11.  see documentation in index.html for details.
+					},
+				],
 			]
 		}),
 
-		// Watch the `public` directory and refresh the
-		// browser on changes when not in production
+		// Watch the `public` directory and refresh the browser on changes when not in production
 		!production && livereload('public'),
 
-		// If we're building for production (npm run build
-		// instead of npm run dev), minify
-		//production && terser({ sourcemap: false })
+		// If we're building for production (npm run build instead of npm run dev), minify
+		production && terser({ sourcemap: false })
+
 	]
 
 };
