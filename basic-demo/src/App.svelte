@@ -4,6 +4,8 @@
   import { library } from "@fortawesome/fontawesome";
   import { faArrowAltCircleRight } from "@fortawesome/fontawesome-free-solid";
   import Sub from "./Sub.svelte";
+  import { echo } from "./silly-function.js";
+  import { Person } from "./silly-class.js";
 
   library.add(faArrowAltCircleRight);
 
@@ -13,6 +15,9 @@
   // just making sure this doesn't throw an error in the browser due to missing function
   // (this is to test that polyfills are properly included)
   let aa = Array.from('foo');
+
+  let foo = echo('foox');
+  let p = new Person("2018-01-02");
 
 </script>
 
@@ -60,5 +65,8 @@
   </div>
 
   <Sub/>
+
+  <p>This should say "foox": {foo}</p>
+  <p>The person was born on a {p.birthDayOfWeek}</p>
 
 </div>
