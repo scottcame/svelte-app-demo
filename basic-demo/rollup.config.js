@@ -5,11 +5,12 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import purgecss from '@fullhuman/postcss-purgecss';
-import sizes from 'rollup-plugin-sizes';
 import alias from "rollup-plugin-alias";
 import babel from 'rollup-plugin-babel';
 import sass from 'node-sass';
 import fs from 'fs';
+
+//import sizes from 'rollup-plugin-sizes';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -98,7 +99,7 @@ export default {
     production && terser({ sourcemap: false }),
 
     // uncomment to display bundle component sizes
-    // sizes({ details: true})
+    //sizes({ details: true})
 
   ]
 
