@@ -30,8 +30,9 @@
   },
   "scripts": {
     "clean": "rm public/bundle.*",
-    "build": "rollup -c",
-    "autobuild": "rollup -c -w",
+    "build": "rollup -c --environment DEV:false",
+    "build-dev": "rollup -c --environment DEV:true",
+    "autobuild": "rollup -c -w --environment DEV:true",
     "dev": "run-p start:dev autobuild",
     "start": "sirv public",
     "start:dev": "sirv public --dev"

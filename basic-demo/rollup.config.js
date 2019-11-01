@@ -12,7 +12,10 @@ import fs from 'fs';
 
 //import sizes from 'rollup-plugin-sizes';
 
-const production = !process.env.ROLLUP_WATCH;
+const production = process.env.DEV!=="true";
+console.log("Performing a " + (production ? "production" : "dev") + " build");
+
+const watch = process.env.ROLLUP_WATCH;
 
 sass.render({
   file: 'src/global.scss',
@@ -93,7 +96,7 @@ export default {
     }),
 
     // Watch the `public` directory and refresh the browser on changes when not in production
-    !production && livereload('public'),
+    watch && livereload('public'),
 
     // If we're building for production (npm run build instead of npm run dev), minify
     production && terser({ sourcemap: false }),
