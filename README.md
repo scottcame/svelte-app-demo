@@ -16,3 +16,7 @@ could lead to a blog series or something.
 1. sass
 1. deploy as part of a maven app
 1. deploy as part of a maven app with calls to an http api
+
+#### Notes
+
+* For rest/http api: see tutorial at https://www.valentinog.com/blog/svelte/ and https://dev.to/manyeya/how-to-consume-a-restful-api-in-svelte-f4

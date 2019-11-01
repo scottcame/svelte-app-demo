@@ -3,6 +3,7 @@
   import moment from 'moment';
   import { library } from "@fortawesome/fontawesome";
   import { faArrowAltCircleRight } from "@fortawesome/fontawesome-free-solid";
+  import Sub from "./Sub.svelte";
 
   library.add(faArrowAltCircleRight);
 
@@ -57,5 +58,7 @@
   <div class="fave">
     <p class='pt-3'>This should appear purple, because we're using the global style defined in the global.scss file. This gets compiled at the top of the build. whoa</p>
   </div>
+
+  <Sub/>
 
 </div>
